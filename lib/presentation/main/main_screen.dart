@@ -118,28 +118,7 @@ class _MainScreenViewState extends State<MainScreenView> {
             ),
           ),
 
-          // items: [
-          //   BottomNavigationBarItem(
-          //     icon: SvgPicture.asset(AppIcons.navHome),
-          //     label: "navHome",
-          //     activeIcon: SvgPicture.asset(AppIcons.navHomeOn),
-          //   ),
-          //   BottomNavigationBarItem(
-          //     icon: SvgPicture.asset(AppIcons.navCategory),
-          //     label: "navCategory",
-          //     activeIcon: SvgPicture.asset(AppIcons.navCategoryOn),
-          //   ),
-          //   BottomNavigationBarItem(
-          //     icon: SvgPicture.asset(AppIcons.navSearch),
-          //     label: "navSearch",
-          //     activeIcon: SvgPicture.asset(AppIcons.navSearchOn),
-          //   ),
-          //   BottomNavigationBarItem(
-          //     icon: SvgPicture.asset(AppIcons.navUser),
-          //     label: "navUser",
-          //     activeIcon: SvgPicture.asset(AppIcons.navUserOn),
-          //   ),
-          // ],
+
         );
       }),
     );
