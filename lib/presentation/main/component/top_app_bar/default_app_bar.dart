@@ -30,6 +30,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
                   color: state.isMarket
                       ? Theme.of(context).colorScheme.background
                       : Theme.of(context).colorScheme.primary,
+
                 ),
           ),
           backgroundColor: Colors.transparent,
