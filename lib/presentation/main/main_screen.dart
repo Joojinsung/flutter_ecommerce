@@ -8,28 +8,22 @@ import '../pages/category/category_page.dart';
 import '../pages/home/home_page.dart';
 import 'component/top_app_bar/top_app_bar.dart';
 import 'cubit/bottom_nav_cubit.dart';
+import 'cubit/mall_type_cubit.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => BottomNavCubit(),
-      child: const MainScreenView(),
-    );
+    return MultiBlocProvider(providers: [
+      BlocProvider(create: (_) => BottomNavCubit()),
+      BlocProvider(create: (_) => MallTypeCubit()),
+    ], child: const MainScreenView());
   }
 }
 
-class MainScreenView extends StatefulWidget {
+class MainScreenView extends StatelessWidget {
   const MainScreenView({super.key});
-
-  @override
-  State<MainScreenView> createState() => _MainScreenViewState();
-}
-
-class _MainScreenViewState extends State<MainScreenView> {
-  int _selectedSegment = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -39,19 +33,19 @@ class _MainScreenViewState extends State<MainScreenView> {
         builder: (_, state) {
           switch (state) {
             case BottomNavState.home:
-              return HomePage();
+              return const HomePage();
             case BottomNavState.category:
-              return CategoryPage();
+              return const CategoryPage();
             case BottomNavState.search:
-              return Center(
+              return const Center(
                 child: Text("Search"),
               );
             case BottomNavState.user:
-              return Center(
+              return const Center(
                 child: Text("user"),
               );
             default:
-              return Center(
+              return const Center(
                 child: Text("Home"),
               );
           }
