@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 
 import '../main/main_screen.dart';
+import '../pages/category/category_page.dart';
 import '../pages/splash/splash_page.dart';
 import 'route_path.dart';
 
@@ -16,6 +17,11 @@ final GoRouter router = GoRouter(
       path: RoutePath.main,
       name: "main",
       builder: (context, state) => const MainScreen(),
+    ),
+    GoRoute(
+      path: RoutePath.category,
+      name: "category",
+      builder: (context, state) => const CategoryPage(),
     ),
   ],
   initialLocation: "/splash", // 초기 화면 경로 설정
