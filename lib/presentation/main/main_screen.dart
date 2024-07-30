@@ -6,6 +6,7 @@ import '../../core/theme/constant/app_colors.dart';
 import '../../core/theme/constant/app_icons.dart';
 import '../pages/category/category_page.dart';
 import '../pages/home/home_page.dart';
+import 'component/top_app_bar/top_app_bar.dart';
 import 'cubit/bottom_nav_cubit.dart';
 
 class MainScreen extends StatelessWidget {
@@ -33,50 +34,7 @@ class _MainScreenViewState extends State<MainScreenView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(44),
-        child: Container(
-          color: Theme.of(context).colorScheme.primary,
-          padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 8),
-          child: AppBar(
-            backgroundColor: Colors.transparent,
-            centerTitle: true,
-            leadingWidth: 86,
-            leading: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SvgPicture.asset(AppIcons.mainLogo),
-            ),
-            title: Text(
-              "Main Screen",
-              style: TextStyle(
-                color: AppColors.onPrimary,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: SvgPicture.asset(
-                  colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.background,
-                      BlendMode.srcIn),
-                  AppIcons.location,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: SvgPicture.asset(
-                  colorFilter: ColorFilter.mode(
-                      Theme.of(context).colorScheme.background,
-                      BlendMode.srcIn),
-                  AppIcons.cart,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
+      appBar: const TopAppBar(),
       body: BlocBuilder<BottomNavCubit, BottomNavState>(
         builder: (_, state) {
           switch (state) {
@@ -107,7 +65,6 @@ class _MainScreenViewState extends State<MainScreenView> {
           showUnselectedLabels: false,
           showSelectedLabels: false,
           type: BottomNavigationBarType.fixed,
-
           items: List.generate(
             BottomNavState.values.length,
             (index) => BottomNavigationBarItem(
@@ -117,8 +74,6 @@ class _MainScreenViewState extends State<MainScreenView> {
                   SvgPicture.asset(BottomNavState.values[index].activeIcon),
             ),
           ),
-
-
         );
       }),
     );
