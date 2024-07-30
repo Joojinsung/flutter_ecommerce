@@ -13,6 +13,7 @@ class TopAppBar extends StatelessWidget implements PreferredSizeWidget {
     return BlocBuilder<BottomNavCubit, BottomNavState>(builder: (_, state) {
       switch (state) {
 
+
         case BottomNavState.home:
           return const HomeAppBar();
         case BottomNavState.category:
