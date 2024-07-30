@@ -107,31 +107,39 @@ class _MainScreenViewState extends State<MainScreenView> {
           showUnselectedLabels: false,
           showSelectedLabels: false,
           type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(AppIcons.navHome),
-              label: "navHome",
-              activeIcon: SvgPicture.asset(AppIcons.navHomeOn),
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(AppIcons.navCategory),
-              label: "navCategory",
-              activeIcon: SvgPicture.asset(AppIcons.navCategoryOn),
 
+          items: List.generate(
+            BottomNavState.values.length,
+            (index) => BottomNavigationBarItem(
+              icon: SvgPicture.asset(BottomNavState.values[index].icon),
+              label: BottomNavState.values[index].toName,
+              activeIcon:
+                  SvgPicture.asset(BottomNavState.values[index].activeIcon),
             ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(AppIcons.navSearch),
-              label: "navSearch",
-              activeIcon: SvgPicture.asset(AppIcons.navSearchOn),
+          ),
 
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(AppIcons.navUser),
-              label: "navUser",
-              activeIcon: SvgPicture.asset(AppIcons.navUserOn),
-
-            ),
-          ],
+          // items: [
+          //   BottomNavigationBarItem(
+          //     icon: SvgPicture.asset(AppIcons.navHome),
+          //     label: "navHome",
+          //     activeIcon: SvgPicture.asset(AppIcons.navHomeOn),
+          //   ),
+          //   BottomNavigationBarItem(
+          //     icon: SvgPicture.asset(AppIcons.navCategory),
+          //     label: "navCategory",
+          //     activeIcon: SvgPicture.asset(AppIcons.navCategoryOn),
+          //   ),
+          //   BottomNavigationBarItem(
+          //     icon: SvgPicture.asset(AppIcons.navSearch),
+          //     label: "navSearch",
+          //     activeIcon: SvgPicture.asset(AppIcons.navSearchOn),
+          //   ),
+          //   BottomNavigationBarItem(
+          //     icon: SvgPicture.asset(AppIcons.navUser),
+          //     label: "navUser",
+          //     activeIcon: SvgPicture.asset(AppIcons.navUserOn),
+          //   ),
+          // ],
         );
       }),
     );
