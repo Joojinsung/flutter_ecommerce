@@ -1,63 +1,78 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../core/theme/constant/app_colors.dart';
 import '../../../../core/theme/constant/app_icons.dart';
+import '../../../../core/theme/custom/custom_theme.dart';
+import '../../cubit/mall_type_cubit.dart';
 
 class HomeAppBar extends StatelessWidget {
   const HomeAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        height: 44,
-        color: Theme.of(context).colorScheme.primary,
-        padding: const EdgeInsets.symmetric(vertical: 6.0, horizontal: 8),
-        child: Row(
-          children: [
-            SizedBox(
-              width: 86,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: SvgPicture.asset(AppIcons.mainLogo),
+    return BlocBuilder<MallTypeCubit, MallType>(builder: (_, state) {
+      return AnimatedContainer(
+        duration: Duration(milliseconds: 400),
+        padding: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+        color: (state.isMarket)
+            ? Theme.of(context).colorScheme.primary
+            : Theme.of(context).colorScheme.background,
+        child: AppBar(
+          leading: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SvgPicture.asset(
+              AppIcons.mainLogo,
+              colorFilter: ColorFilter.mode(
+                  state.isMarket
+                      ? Theme.of(context).colorScheme.onPrimary
+                      : Theme.of(context).colorScheme.primary,
+                  BlendMode.srcIn),
+            ),
+          ),
+          title: DefaultTabController(
+            initialIndex: state.index,
+            length: MallType.values.length,
+            child: TabBar(
+              onTap: (index) =>
+                  context.read<MallTypeCubit>().changeIndex(index),
+              labelColor: Colors.black,
+              unselectedLabelColor: Colors.black,
+              tabs: List.generate(
+                MallType.values.length,
+                (index) => Tab(text: MallType.values[index].toName),
               ),
             ),
-            Expanded(
-              child: Center(
-                child: Text(
-                  "Main Screen",
-                  style: TextStyle(
-                    color: AppColors.onPrimary,
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
+          ),
+          actions: [
             Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: EdgeInsets.all(4.0),
               child: SvgPicture.asset(
                 AppIcons.location,
                 colorFilter: ColorFilter.mode(
-                  Theme.of(context).colorScheme.background,
-                  BlendMode.srcIn,
-                ),
+                    state.isMarket
+                        ? Theme.of(context).colorScheme.background
+                        : Theme.of(context).colorScheme.contentPrimary,
+                    BlendMode.srcIn),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: EdgeInsets.all(4.0),
               child: SvgPicture.asset(
                 AppIcons.cart,
                 colorFilter: ColorFilter.mode(
-                  Theme.of(context).colorScheme.background,
-                  BlendMode.srcIn,
-                ),
+                    state.isMarket
+                        ? Theme.of(context).colorScheme.background
+                        : Theme.of(context).colorScheme.contentPrimary,
+                    BlendMode.srcIn),
               ),
-            ),
+            )
           ],
+          backgroundColor: Colors.transparent,
+          centerTitle: true,
         ),
-      ),
-    );
+      );
+    });
   }
 }
